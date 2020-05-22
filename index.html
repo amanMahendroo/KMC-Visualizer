@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
+	<script type="text/javascript" src="dataPoints.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+	<div class="nav">
+		<div id="menu-toggle">
+			<input type="checkbox" />
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<input class="in" id="centroids" type="number" placeholder="Number of centroids" />
+		<input class="out" id="reset" type="button" name="reset" value="Reset" onclick="reset()" />
+		<input class="out" id="recolor" type="button" name="recolor" value="Recolor centeres" onclick="recolor()" />
+		<input class="out" id="adder" type="button" name="add-100" value="Add 100 points" onclick="addRandom()" />
+		<input class="out" id="shuffle" type="button" name="shuffle" value="Shuffle centers" onclick="shuffl()" />
+		<input class="out" id="start-alg" type="button" name="start" value="Begin clustering" onclick="begin()" />
+	</div>
+</body>
+</html>
