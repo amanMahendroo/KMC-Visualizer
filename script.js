@@ -23,6 +23,7 @@ function draw() {
 	}
 	if (data.running) {
 		data.cluster();
+		
 	}
 	data.show();
 }
@@ -52,7 +53,7 @@ function addRandom() {
 		data.points.push({
 			pos: createVector(random(width), random(100, height)),
 			cluster: -1
-		})
+		})	
 	}
 }
 
@@ -77,6 +78,5 @@ function shuffl() {
 }
 
 function begin() {
-	frameRate(2);
 	data.running = true;
 }
