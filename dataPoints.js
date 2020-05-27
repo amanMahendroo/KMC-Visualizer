@@ -1,5 +1,6 @@
 class DataPoints {
 	constructor() {
+		this.prevCluster = []
 		this.points = []
 		this.centroids = []
 		this.running = false
@@ -12,7 +13,7 @@ class DataPoints {
 			fill(255)
 			if (this.points[i].cluster > -1) {
 				fill(this.centroids[this.points[i].cluster].color)
-				stroke(	this.centroids[this.points[i].cluster].color )
+				stroke(this.centroids[this.points[i].cluster].color)
 				line(	this.points[i].pos.x, 
 						this.points[i].pos.y, 
 						this.centroids[this.points[i].cluster].pos.x, 
@@ -29,6 +30,9 @@ class DataPoints {
 	}
 
 	cluster() {
+		for (var i = 0; i < this.points.length; i++) {
+			this.prevCluster[i] = this.points[i].cluster
+		}
 		for (let i = 0; i < this.points.length; i++) {
 			let minimum = Infinity
 			for (let j = 0; j < this.centroids.length; j++) {
@@ -40,6 +44,16 @@ class DataPoints {
 				}
 			}
 		}
+		let same = true
+		for (var i = 0; i < this.points.length; i++) {
+			if (this.prevCluster[i] != this.points[i].cluster) {
+				same = false
+				break
+			}
+		}
+		if (same)
+			this.running = false
+
 		for (var i = 0; i < this.centroids.length; i++) {
 			let x = 0, y = 0, l = 0
 			for (var j = 0; j < this.points.length; j++) {
