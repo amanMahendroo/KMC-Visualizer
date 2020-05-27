@@ -43,7 +43,8 @@ input {
 	line-height: 100px;
 	width: 100px;
 	text-align: center;
-	font-size: 2em;
+	font-size: 3.5em;
+	font-weight: lighter;
 	transition: .2s all ease;
 }
 
