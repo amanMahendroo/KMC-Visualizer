@@ -5,50 +5,35 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-input {
-	height: 50px;
-	line-height: 50px;
-	border-radius: 25px;
-	border: none;
-	outline: none;
-	width: 500px;
-	margin: 20px;
-	padding: 0 25px;
-	font-size: 1em;
-	letter-spacing: 1px;
+canvas {
+	position: absolute;
 }
 
 .nav {
 	position: absolute;
 	z-index: 50;
 	height: 100px;
-	width: 100vw;
-	background: #000;
+	width: 300px;
 	overflow: hidden;
 	display: flex;
-}
-
-.buttons {
-	width: 500px;
-	display: flex;
-	position: absolute;
+	bottom: 0;
 	right: 0;
-	background: #000;
-	z-index: 100;
+
 }
 
-.out {
-	color: #0f6;
+.btn {
+	color: transparent;
 	cursor: pointer;
 	line-height: 100px;
 	width: 100px;
 	text-align: center;
 	font-size: 3.5em;
-	font-weight: lighter;
 	transition: .2s all ease;
+	/*text-shadow: 1px 1px #0007;*/
+	-webkit-text-stroke: 1px #0f83;
 }
 
-.out:hover {
-	background: #0f6;
-	color: #000;
+.btn:hover {
+	/*background: #0f6;*/
+	color: #0f8;
 }

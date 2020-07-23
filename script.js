@@ -1,30 +1,32 @@
 function setup() {
+	console.clear()
 	createCanvas(window.innerWidth, window.innerHeight);
 	ellipseMode(CENTER)
 	data = new DataPoints()
+	colors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe']
 }
 
-let data;
+let data, color
 
 function draw() {
 	background(51);
 	let x = 50, y = 50
 	while(x < width) {
-		stroke(255, 50);
+		stroke(255, 10);
 		strokeWeight(1)
 		line(x, 0, x, height);
 		x += 50;
 	}
 	while(y < height) {
-		stroke(255, 50);
+		stroke(255, 10);
 		strokeWeight(1)
 		line(0, y, width, y);
 		y += 50;
 	}
 	if (data.running) {
 		data.cluster();
-		
 	}
+	// frameRate(2)
 	data.show();
 }
 
@@ -33,50 +35,29 @@ function sqrDist(a, b) {
 }
 
 function mousePressed() {
-	if (mouseY > 100) {
+	if (mouseY < height - 100 || mouseX < width - 300) {
 		data.points.push({pos: createVector(mouseX, mouseY), cluster: -1});
 	}
 }
 
-function reset() {
-	data = new DataPoints();
+function mouseDragged() {
+	if (mouseY < height - 100 || mouseX < width - 300) {
+		let p = p5.Vector.random2D().setMag(random(50))
+		data.points.push({pos: createVector(mouseX + p.x, mouseY + p.y), cluster: -1});
+	}
 }
 
-function recolor() {
-	for (var i = 0; i < data.centroids.length; i++) {
-		data.centroids[i].color = color(random(255), random(255), random(255))
-	}
+function begin() {
+	data.cost = []
+	data.initClusters(1)
+	data.running = true
 }
 
 function addRandom() {
 	for (var i = 0; i < 100; i++) {
 		data.points.push({
-			pos: createVector(random(width), random(100, height)),
+			pos: createVector(random(width), random(0, height - 100)),
 			cluster: -1
 		})	
 	}
-}
-
-function shuffl() {
-	if (!data.created) {
-		let c = document.getElementById('centroids').value
-		data.centroids = [];
-		for (let i = 0; i < c; i++) {
-			data.centroids.push({
-				pos: createVector(random(width), random(100, height)),
-				cluster: i,
-				color: color(random(255), random(255), random(255))
-			});
-		}
-		data.created = true
-	} else {
-		for (let i = 0; i < data.centroids.length; i++) {
-			data.centroids[i].pos =  createVector(random(width), random(100, height))
-		}	
-	}
-
-}
-
-function begin() {
-	data.running = true;
 }
